@@ -15,10 +15,13 @@
     flex-wrap: wrap;
     width: 320px;
     height: 320px;
+    border: 1px solid lightgray;
+    box-shadow: 1px 1px 1px black;
+    box-sizing: content-box;
 }
 
 .grid-container>* {
+    user-select: none;
     min-width: 20px;
     min-height: 20px;
-    border: 1px solid red;
 }
