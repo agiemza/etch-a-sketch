@@ -4,6 +4,7 @@ const currentRangeContainer = document.querySelector(".current-range-container")
 const colorPicker = document.querySelector(".color-picker")
 const resetButton = document.querySelector(".reset-button")
 const randomColorButton = document.querySelector(".random-color")
+const rainbowButton = document.querySelector(".rainbow-mode")
 
 const settings = {
     penColor: "#000000",
@@ -11,7 +12,8 @@ const settings = {
     editingActive: false,
     currentTargetColor: undefined,
     boxSide: undefined,
-    gridSize: 20
+    gridSize: 20,
+    rainbowMode: false
 }
 
 function setEventListeners() {
@@ -27,16 +29,9 @@ function setEventListeners() {
     colorPicker.addEventListener("change", e => {
         settings.penColor = e.target.value
     })
-    randomColorButton.addEventListener("click", () => {
-        let newColor = {
-            red: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
-            green: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
-            blue: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2)
-        }
-        console.log(`#${newColor.red}${newColor.green}${newColor.blue} `)
-        settings.penColor = `#${newColor.red}${newColor.green}${newColor.blue}`
-        colorPicker.value = `#${newColor.red}${newColor.green}${newColor.blue}`
-
+    randomColorButton.addEventListener("click", randomizeColor)
+    rainbowButton.addEventListener("change", e => {
+        settings.rainbowMode = e.target.checked
     })
     resetButton.addEventListener("click", resetGrid)
 }
@@ -66,6 +61,9 @@ function handleMouseOver(e) {
 }
 
 function handleMouseLeave(e) {
+    if (settings.rainbowMode) {
+        randomizeColor()
+    }
     if (!settings.editingActive) {
         e.target.style.cssText = `
         width: ${settings.boxSide};
@@ -96,6 +94,16 @@ function changeGridSize(e) {
     currentRangeContainer.innerText = `${e.target.value}x${e.target.value}`
     settings.gridSize = e.target.value
     resetGrid()
+}
+
+function randomizeColor() {
+    const newColor = {
+        red: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
+        green: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
+        blue: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2)
+    }
+    settings.penColor = `#${newColor.red}${newColor.green}${newColor.blue}`
+    colorPicker.value = `#${newColor.red}${newColor.green}${newColor.blue}`
 }
 
 window.onload = () => {
