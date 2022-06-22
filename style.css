@@ -21,11 +21,12 @@
 }
 
 .grid-container>* {
+    background: red;
     flex-shrink: 0;
     user-select: none;
 }
 
-.slider {
+.slider-container {
     display: flex;
     justify-content: center;
     align-items: center;

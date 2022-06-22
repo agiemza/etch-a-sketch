@@ -2,19 +2,23 @@ const gridContainer = document.querySelector(".grid-container")
 const rangeInput = document.querySelector(".range-input")
 const currentRangeContainer = document.querySelector(".current-range-container")
 const colorPicker = document.querySelector(".color-picker")
+const resetButton = document.querySelector(".reset-button")
 
 const settings = {
     penColor: "rgba(0,0,0,1)",
     canvasColor: "rgba(255,255,255,1)",
     editingActive: false,
     currentTargetColor: undefined,
-    boxSide: undefined
+    boxSide: undefined,
+    gridSize: 20
 }
 
-rangeInput.addEventListener("change", handleChangeRange)
+rangeInput.addEventListener("change", changeGridSize)
 colorPicker.addEventListener("change", e => {
     settings.penColor = e.target.value
 })
+
+resetButton.addEventListener("click", resetGrid)
 
 gridContainer.addEventListener("mousedown", e => {
     settings.editingActive = true
@@ -71,13 +75,15 @@ function disableEditing() {
     settings.editingActive = false
 }
 
-function handleChangeRange(e) {
-    currentRangeContainer.innerText = `${e.target.value}x${e.target.value}`
-
-    while (gridContainer.childNodes.length) {
-        gridContainer.removeChild(gridContainer.childNodes[0])
-    }
-    createGridElements(e.target.value)
+function resetGrid() {
+    gridContainer.innerHTML = ""
+    createGridElements(settings.gridSize)
 }
 
-createGridElements(20)
+function changeGridSize(e) {
+    currentRangeContainer.innerText = `${e.target.value}x${e.target.value}`
+    settings.gridSize = e.target.value
+    resetGrid()
+}
+
+createGridElements(settings.gridSize)
