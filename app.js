@@ -5,6 +5,8 @@ const colorPicker = document.querySelector(".color-picker")
 const resetButton = document.querySelector(".reset-button")
 const randomColorButton = document.querySelector(".random-color")
 const rainbowButton = document.querySelector(".rainbow-mode")
+const penButton = document.querySelector(".pen-button")
+const eraserButton = document.querySelector(".eraser-button")
 
 const settings = {
     penColor: "#000000",
@@ -13,7 +15,8 @@ const settings = {
     currentTargetColor: undefined,
     boxSide: undefined,
     gridSize: 20,
-    rainbowMode: false
+    rainbowMode: false,
+    currentTool: "pen"
 }
 
 function setEventListeners() {
@@ -24,14 +27,22 @@ function setEventListeners() {
     })
     gridContainer.addEventListener("mouseup", disableEditing)
     gridContainer.addEventListener("mouseleave", disableEditing)
-
     rangeInput.addEventListener("change", changeGridSize)
+
     colorPicker.addEventListener("change", e => {
         settings.penColor = e.target.value
     })
     randomColorButton.addEventListener("click", randomizeColor)
     rainbowButton.addEventListener("change", e => {
         settings.rainbowMode = e.target.checked
+    })
+
+    penButton.addEventListener("click", e => {
+        settings.currentTool = "pen"
+    })
+    eraserButton.addEventListener("click", e => {
+        settings.currentTool = "eraser"
+        settings.penColor = settings.canvasColor
     })
     resetButton.addEventListener("click", resetGrid)
 }
