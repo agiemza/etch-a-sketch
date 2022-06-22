@@ -21,7 +21,6 @@
 }
 
 .grid-container>* {
-    background: red;
     flex-shrink: 0;
     user-select: none;
 }

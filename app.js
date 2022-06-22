@@ -13,21 +13,21 @@ const settings = {
     gridSize: 20
 }
 
-rangeInput.addEventListener("change", changeGridSize)
-colorPicker.addEventListener("change", e => {
-    settings.penColor = e.target.value
-})
-
-resetButton.addEventListener("click", resetGrid)
-
-gridContainer.addEventListener("mousedown", e => {
-    settings.editingActive = true
-    settings.currentTargetColor = settings.penColor
-    paintGridElements(e)
-})
-gridContainer.addEventListener("mouseup", disableEditing)
-gridContainer.addEventListener("mouseleave", disableEditing)
-
+function setEventListeners() {
+    gridContainer.addEventListener("mousedown", e => {
+        settings.editingActive = true
+        settings.currentTargetColor = settings.penColor
+        paintGridElements(e)
+    })
+    gridContainer.addEventListener("mouseup", disableEditing)
+    gridContainer.addEventListener("mouseleave", disableEditing)
+    
+    rangeInput.addEventListener("change", changeGridSize)
+    colorPicker.addEventListener("change", e => {
+        settings.penColor = e.target.value
+    })
+    resetButton.addEventListener("click", resetGrid)
+}
 
 function createGridElements(sideLength) {
     settings.boxSide = `${500 / sideLength}px`
@@ -86,4 +86,7 @@ function changeGridSize(e) {
     resetGrid()
 }
 
-createGridElements(settings.gridSize)
+window.onload = () => {
+    createGridElements(settings.gridSize)
+    setEventListeners()
+}
