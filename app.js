@@ -10,7 +10,7 @@ const eraserButton = document.querySelector(".eraser-button")
 
 const settings = {
     penColor: "#000000",
-    canvasColor: "#ffffff",
+    canvasColor: "#FFFFFF",
     editingActive: false,
     currentTargetColor: undefined,
     boxSide: undefined,
@@ -34,15 +34,19 @@ function setEventListeners() {
     })
     randomColorButton.addEventListener("click", randomizeColor)
     rainbowButton.addEventListener("change", e => {
+        settings.currentTool = "pen"
         settings.rainbowMode = e.target.checked
     })
 
     penButton.addEventListener("click", e => {
         settings.currentTool = "pen"
+        settings.penColor = colorPicker.value
     })
     eraserButton.addEventListener("click", e => {
         settings.currentTool = "eraser"
         settings.penColor = settings.canvasColor
+        settings.rainbowMode = false
+        rainbowButton.checked = false
     })
     resetButton.addEventListener("click", resetGrid)
 }
@@ -72,7 +76,7 @@ function handleMouseOver(e) {
 }
 
 function handleMouseLeave(e) {
-    if (settings.rainbowMode) {
+    if (settings.rainbowMode && settings.currentTool === "pen") {
         randomizeColor()
     }
     if (!settings.editingActive) {
