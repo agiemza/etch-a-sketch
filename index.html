@@ -17,20 +17,25 @@
         <section class="grid-container">
         </section>
         <section class="controls-container">
-            <div class="slider-container">
-                <input type="range" min="6" max="100" value="20" step="1" class="range-input">
-                <span class="current-range-container">20x20</span>
+            <div class="central-container">
+                <div class="slider-container">
+                    <label for="range">Choose resolution:</label>
+                    <input type="range" min="6" max="100" value="20" step="1" class="range-input" id="range">
+                    <span class="current-range-container">20x20</span>
+                </div>
+                <div class="rainbow-container">
+                    <label for="rainbow-mode">Rainbow mode</label>
+                    <input type="checkbox" class="rainbow-mode" id="rainbow-mode">
+                </div>
+                <button class="reset-button">Reset</button>
             </div>
-            <div class="color-picker-container">
+            <div class="color-container">
                 <input type="color" value="#000000" class="color-picker">
                 <button class="random-color">Random color</button>
-                <input type="checkbox" class="rainbow-mode" id="rainbow-mode">
-                <label for="rainbow-mode">Rainbow mode</label>
             </div>
             <div class="tools-container">
                 <button class="pen-button">Pen</button>
                 <button class="eraser-button">Eraser</button>
-                <button class="reset-button">Reset</button>
             </div>
         </section>
     </section>

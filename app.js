@@ -52,12 +52,13 @@ function setEventListeners() {
 }
 
 function createGridElements(sideLength) {
-    settings.boxSide = `${500 / sideLength}px`
+    settings.boxSide = `${gridContainer.offsetWidth / sideLength}px`
     for (let i = 0; i < sideLength ** 2; i++) {
         const newElement = document.createElement("div")
         newElement.style.cssText = `
         width: ${settings.boxSide};
         height: ${settings.boxSide};
+        background-color: ${settings.canvasColor}
         `
         newElement.addEventListener("mouseover", handleMouseOver)
         newElement.addEventListener("mouseout", handleMouseLeave)
