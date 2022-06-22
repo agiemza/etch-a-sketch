@@ -1,6 +1,7 @@
 const gridContainer = document.querySelector(".grid-container")
 const rangeInput = document.querySelector(".range-input")
 const currentRangeContainer = document.querySelector(".current-range-container")
+const colorPicker = document.querySelector(".color-picker")
 
 const settings = {
     penColor: "rgba(0,0,0,1)",
@@ -10,7 +11,10 @@ const settings = {
     boxSide: undefined
 }
 
-rangeInput.addEventListener('change', handleChangeRange)
+rangeInput.addEventListener("change", handleChangeRange)
+colorPicker.addEventListener("change", e => {
+    settings.penColor = e.target.value
+})
 
 gridContainer.addEventListener("mousedown", e => {
     settings.editingActive = true
