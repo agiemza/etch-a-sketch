@@ -1,6 +1,7 @@
 const gridContainer = document.querySelector(".grid-container")
 const rangeInput = document.querySelector(".range-input")
 const currentRangeContainer = document.querySelector(".current-range-container")
+const colorPickerWrapper = document.querySelector(".color-picker-wrapper")
 const colorPicker = document.querySelector(".color-picker")
 const resetButton = document.querySelector(".reset-button")
 const randomColorButton = document.querySelector(".random-color")
@@ -29,9 +30,14 @@ function setEventListeners() {
     gridContainer.addEventListener("mouseleave", disableEditing)
     rangeInput.addEventListener("change", changeGridSize)
 
-    colorPicker.addEventListener("change", e => {
-        settings.penColor = e.target.value
+    colorPickerWrapper.addEventListener("click", () => {
+        colorPicker.click()
     })
+    colorPicker.addEventListener("input", e => {
+        settings.penColor = e.target.value
+        colorPickerWrapper.style.cssText = `background-color: ${e.target.value}`
+    })
+
     randomColorButton.addEventListener("click", randomizeColor)
     rainbowButton.addEventListener("change", e => {
         settings.currentTool = "pen"
@@ -116,10 +122,11 @@ function randomizeColor() {
     const newColor = {
         red: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
         green: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
-        blue: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2)
+        blue: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
     }
     settings.penColor = `#${newColor.red}${newColor.green}${newColor.blue}`
     colorPicker.value = `#${newColor.red}${newColor.green}${newColor.blue}`
+    colorPickerWrapper.style.cssText = `background-color: #${newColor.red}${newColor.green}${newColor.blue}`
 }
 
 window.onload = () => {
