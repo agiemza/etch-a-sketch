@@ -141,10 +141,14 @@ function changeTool(tool) {
     switch (tool) {
         case "pen":
             settings.penColor = colorPicker.value
+            eraserButton.classList.remove("active-button")
+            penButton.classList.add("active-button")
             break
         case "eraser":
             settings.penColor = settings.canvasColor
             toggleRainbow(false)
+            penButton.classList.remove("active-button")
+            eraserButton.classList.add("active-button")
             break
     }
 }
