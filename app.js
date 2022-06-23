@@ -6,6 +6,7 @@ const colorPicker = document.querySelector(".color-picker")
 const resetButton = document.querySelector(".reset-button")
 const randomColorButton = document.querySelector(".random-color")
 const rainbowButton = document.querySelector(".rainbow-mode")
+const rainbowBackground = document.querySelector(".rainbow-background")
 const penButton = document.querySelector(".pen-button")
 const eraserButton = document.querySelector(".eraser-button")
 
@@ -40,19 +41,15 @@ function setEventListeners() {
 
     randomColorButton.addEventListener("click", randomizeColor)
     rainbowButton.addEventListener("change", e => {
-        settings.currentTool = "pen"
-        settings.rainbowMode = e.target.checked
+        changeTool("pen")
+        toggleRainbow(e.target.checked)
     })
 
-    penButton.addEventListener("click", e => {
-        settings.currentTool = "pen"
-        settings.penColor = colorPicker.value
+    penButton.addEventListener("click", () => {
+        changeTool("pen")
     })
-    eraserButton.addEventListener("click", e => {
-        settings.currentTool = "eraser"
-        settings.penColor = settings.canvasColor
-        settings.rainbowMode = false
-        rainbowButton.checked = false
+    eraserButton.addEventListener("click", () => {
+        changeTool("eraser")
     })
     resetButton.addEventListener("click", resetGrid)
 }
@@ -127,6 +124,29 @@ function randomizeColor() {
     settings.penColor = `#${newColor.red}${newColor.green}${newColor.blue}`
     colorPicker.value = `#${newColor.red}${newColor.green}${newColor.blue}`
     colorPickerWrapper.style.cssText = `background-color: #${newColor.red}${newColor.green}${newColor.blue}`
+}
+
+function toggleRainbow(state) {
+    settings.rainbowMode = state
+    if (!state) {
+        rainbowButton.checked = false
+        rainbowBackground.classList.remove("opacity-1")
+    } else {
+        rainbowBackground.classList.add("opacity-1")
+    }
+}
+
+function changeTool(tool) {
+    settings.currentTool = tool
+    switch (tool) {
+        case "pen":
+            settings.penColor = colorPicker.value
+            break
+        case "eraser":
+            settings.penColor = settings.canvasColor
+            toggleRainbow(false)
+            break
+    }
 }
 
 window.onload = () => {
