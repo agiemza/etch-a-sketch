@@ -34,9 +34,10 @@ function setEventListeners() {
     colorPickerWrapper.addEventListener("click", () => {
         colorPicker.click()
     })
-    colorPicker.addEventListener("input", e => {
+    colorPicker.addEventListener("change", e => {
         settings.penColor = e.target.value
         colorPickerWrapper.style.cssText = `background-color: ${e.target.value}`
+        changeTool("pen")
     })
 
     randomColorButton.addEventListener("click", randomizeColor)
@@ -121,9 +122,9 @@ function randomizeColor() {
         green: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
         blue: (`0${Math.floor(Math.random() * 256).toString(16)}`).slice(-2),
     }
-    settings.penColor = `#${newColor.red}${newColor.green}${newColor.blue}`
     colorPicker.value = `#${newColor.red}${newColor.green}${newColor.blue}`
     colorPickerWrapper.style.cssText = `background-color: #${newColor.red}${newColor.green}${newColor.blue}`
+    changeTool("pen")
 }
 
 function toggleRainbow(state) {
