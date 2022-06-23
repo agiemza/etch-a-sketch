@@ -157,6 +157,17 @@ button:hover {
     background-color: hsl(14, 68%, 92%);
 }
 
+button:active {
+    box-shadow: inset 0px 1px 0px 0px #622f2d;
+    border-bottom-width: 1px;
+}
+
+.active-button {
+    background-color: hsl(14, 68%, 92%);
+    box-shadow: inset 0px 1px 0px 0px #622f2d;
+    border-bottom-width: 1px;
+}
+
 .color-picker-wrapper:hover,
 .color-picker-wrapper:active {
     transform: scale(1.02);
@@ -164,16 +175,6 @@ button:hover {
 
 .color-picker-wrapper:active {
     transform: scale(0.97);
-}
-
-button:active {
-    box-shadow: inset 0px 1px 0px 0px #622f2d;
-    border-bottom-width: 1px;
-}
-
-.active-button {
-    box-shadow: inset 0px 1px 0px 0px #622f2d;
-    border-bottom-width: 1px;
 }
 
 .color-picker-wrapper {
