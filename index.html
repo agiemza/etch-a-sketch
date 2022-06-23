@@ -11,44 +11,46 @@
 
 <body>
     <section class="root">
-        <section class="title">
-            <h1>Etch A Sketch</h1>
-        </section>
-        <section class="grid-container">
-        </section>
-        <section class="controls-container">
-            <div class="tools-container">
-                <button class="pen-button active-button">Pen</button>
-                <button class="eraser-button">Eraser</button>
-            </div>
-            <div class="central-container">
-                <div class="slider-container">
-                    <div class="resolution-wrapper">
-                        <label for="range">Resolution:</label>
-                        <span class="current-range-container">20x20</span>
-                    </div>
-                    <div class="range-wrapper">
-                        <input type="range" min="6" max="100" value="20" step="1" class="range-input" id="range">
-                    </div>
+        <div class="app-wrapper">
+            <section class="title">
+                <h1>Etch A Sketch</h1>
+            </section>
+            <section class="grid-container">
+            </section>
+            <section class="controls-container">
+                <div class="tools-container">
+                    <button class="pen-button active-button">Pen</button>
+                    <button class="eraser-button">Eraser</button>
                 </div>
-                <div class="rainbow-container">
-                    Rainbow mode
-                    <label for="rainbow-mode" class="rainbow-label">
-                        <input type="checkbox" class="rainbow-mode" id="rainbow-mode">
-                        <div class="rainbow-slider">
-                            <div class="rainbow-background"></div>
+                <div class="central-container">
+                    <div class="slider-container">
+                        <div class="resolution-wrapper">
+                            <label for="range">Resolution:</label>
+                            <span class="current-range-container">20x20</span>
                         </div>
-                    </label>
+                        <div class="range-wrapper">
+                            <input type="range" min="6" max="100" value="20" step="1" class="range-input" id="range">
+                        </div>
+                    </div>
+                    <div class="rainbow-container">
+                        Rainbow mode
+                        <label for="rainbow-mode" class="rainbow-label">
+                            <input type="checkbox" class="rainbow-mode" id="rainbow-mode">
+                            <div class="rainbow-slider">
+                                <div class="rainbow-background"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <button class="reset-button">Reset</button>
                 </div>
-                <button class="reset-button">Reset</button>
-            </div>
-            <div class="color-container">
-                <div class="color-picker-wrapper">
-                    <input type="color" value="#000000" class="color-picker">
+                <div class="color-container">
+                    <div class="color-picker-wrapper">
+                        <input type="color" value="#000000" class="color-picker">
+                    </div>
+                    <button class="random-color">Random</button>
                 </div>
-                <button class="random-color">Random</button>
-            </div>
-        </section>
+            </section>
+        </div>
     </section>
     <script src="app.js"></script>
 </body>
