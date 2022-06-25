@@ -14,11 +14,11 @@ const settings = {
     penColor: "#000000",
     canvasColor: "#FFFFFF",
     editingActive: false,
-    currentTargetColor: undefined,
-    boxSide: undefined,
+    currentTargetColor: null,
+    boxSide: null,
     gridSize: 20,
     rainbowMode: false,
-    currentTool: "pen"
+    currentTool: "pen",
 }
 
 function setEventListeners() {
@@ -53,6 +53,11 @@ function setEventListeners() {
         changeTool("eraser")
     })
     resetButton.addEventListener("click", resetGrid)
+
+    window.addEventListener("resize", e => {
+        gridContainer.innerHTML = ""
+        createGridElements(settings.gridSize)
+    })
 }
 
 function createGridElements(sideLength) {
